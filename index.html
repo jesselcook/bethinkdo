@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Be. Think. Do. — A 30-Day IFI Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4EEDF; --surface:#FBF8F0; --text:#241C0E; --muted:#5E5238; --line:rgba(36,28,14,.16);
+  --accent:#8A6A1E; --fill:#C9A227; --on-fill:#1B1608;
+  --be:#8A6A1E; --think:#3F5A9E; --do:#4E7048;
+  --hero:linear-gradient(180deg,#1B2340,#262F52); --hero-text:#F7F5EF; --hero-muted:#AEB6D6;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A33; --surface:#1E2749; --text:#F5F2EA; --muted:#AEB6D6; --line:rgba(174,182,214,.24);
+    --accent:#E8C25E; --fill:#E8C25E; --on-fill:#1B1608;
+    --be:#E8C25E; --think:#8FA6E8; --do:#93B88A;
+    --hero:linear-gradient(180deg,#0F1428,#1B2340);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A33; --surface:#1E2749; --text:#F5F2EA; --muted:#AEB6D6; --line:rgba(174,182,214,.24);
+  --accent:#E8C25E; --fill:#E8C25E; --on-fill:#1B1608;
+  --be:#E8C25E; --think:#8FA6E8; --do:#93B88A;
+  --hero:linear-gradient(180deg,#0F1428,#1B2340);
+}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 'Source Sans 3',system-ui,sans-serif;}
+h1,h2,h3{font-family:'Spectral',Georgia,serif;font-weight:500;margin:0;}
+.mono,.eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 .6rem;}
+section{padding:4.5rem 1.4rem;}
+.wrap{max-width:1000px;margin:0 auto;}
+.lead{max-width:640px;color:var(--muted);}
+.hero{background:var(--hero);color:var(--hero-text);text-align:center;padding:6rem 1.4rem 5rem;}
+.hero .eyebrow{color:#E8C25E;}
+.hero h1{font-size:clamp(2.8rem,10vw,5.5rem);line-height:1.05;}
+.hero h1 span:nth-child(1){color:#E8C25E}.hero h1 span:nth-child(2){color:#8FA6E8}.hero h1 span:nth-child(3){color:#93B88A}
+.hero p.sub{max-width:520px;margin:1.2rem auto 2rem;color:var(--hero-muted);font-size:1.05rem;}
+.btn{display:inline-block;background:var(--fill);color:var(--on-fill);border:0;border-radius:3px;padding:.8rem 1.5rem;font:600 .92rem 'Source Sans 3',sans-serif;cursor:pointer;text-decoration:none;}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.1rem;margin-top:2.2rem;}
+.card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:3px;padding:1.6rem 1.4rem;}
+.card h3{font-size:1.6rem;color:var(--c);}
+.card .req{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--muted);margin:.2rem 0 .8rem;}
+.card p{margin:0;font-size:.93rem;color:var(--muted);}
+.note{border-left:3px solid var(--fill);padding:.4rem 0 .4rem 1.2rem;max-width:640px;margin-top:2rem;font-family:'Spectral',serif;font-size:1.15rem;font-style:italic;}
+.alt{background:var(--surface);border-block:1px solid var(--line);}
+.setup{max-width:420px;margin:2rem 0;background:var(--surface);border:1px solid var(--line);padding:1.6rem;border-radius:4px;}
+.setup input{width:100%;margin:.8rem 0 1rem;}
+input[type=text],input[type=date],textarea{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:3px;padding:.55rem .7rem;font:inherit;font-size:.9rem;}
+textarea{resize:vertical;min-height:4rem;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:2rem;}
+@media(max-width:820px){.grid2{grid-template-columns:1fr;}}
+.daybig{font:500 2.4rem 'IBM Plex Mono',monospace;color:var(--accent);}
+.daylbl{color:var(--muted);font-size:.9rem;margin-bottom:1rem;}
+.row{display:flex;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--line);}
+.row:last-of-type{border-bottom:0;}
+.cb{flex:none;width:24px;height:24px;margin-top:.2rem;border:2px solid var(--c);border-radius:50%;background:transparent;cursor:pointer;color:var(--on-fill);font-size:.8rem;font-weight:700;padding:0;}
+.cb[aria-checked="true"]{background:var(--c);}
+.cb[aria-checked="true"]::after{content:"✓";}
+.row .t{font-weight:700;color:var(--c);}
+.row .r{font:.78rem 'IBM Plex Mono',monospace;color:var(--muted);margin-left:.5rem;}
+.row .body{flex:1;}
+.row input{margin-top:.5rem;}
+.refl{margin-top:1.2rem;}
+.refl label{font-weight:600;font-size:.92rem;}
+.refl textarea{margin:.4rem 0 .6rem;}
+.stats{color:var(--muted);font-size:.92rem;margin-bottom:1.2rem;}
+.stats b{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:1.3rem;}
+.track{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:.5rem;}
+.d{aspect-ratio:1;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--muted);font:.8rem 'IBM Plex Mono',monospace;cursor:pointer;position:relative;}
+.d.part{border-color:var(--accent);}
+.d.done{background:var(--fill);border-color:var(--fill);color:var(--on-fill);font-weight:500;}
+.d.today{outline:2px solid var(--accent);outline-offset:2px;}
+.d.ms::after{content:"";position:absolute;inset:-5px;border:1px dashed var(--accent);border-radius:50%;}
+.d.sel{box-shadow:0 0 0 3px var(--surface),0 0 0 5px var(--text);}
+.d[disabled]{opacity:.4;cursor:not-allowed;}
+.legend{font-size:.8rem;color:var(--muted);margin:.9rem 0 0;}
+.grace{margin-top:1.4rem;font-size:.9rem;color:var(--muted);}
+footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);}
+.ov{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:1.4rem;background:rgba(15,20,40,.85);}
+.ov.show{display:flex;}
+.ovc{max-width:420px;text-align:center;background:var(--surface);border:1px solid var(--fill);border-radius:6px;padding:2.6rem 2rem;}
+.ovc h3{font-size:1.8rem;margin:.4rem 0 .8rem;}
+.ovc p{color:var(--muted);margin:0 0 1.4rem;}
+.glow{width:14px;height:20px;margin:0 auto 1rem;border-radius:50% 50% 50% 50%/65% 65% 35% 35%;background:radial-gradient(circle at 50% 70%,#E8C25E,#C9A227 60%,transparent);filter:drop-shadow(0 0 8px #E8C25E);animation:fl 2.4s ease-in-out infinite;}
+@keyframes fl{50%{transform:scaleY(1.1) rotate(-2deg);}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">IFI · A 30-Day Staff Challenge</p>
+  <h1><span>Be.</span> <span>Think.</span> <span>Do.</span></h1>
+  <p class="sub">With Jesus. Three daily rhythms that help our ministry flow from our relationship with Him.</p>
+  <a class="btn" href="#today">Begin Day One</a>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">Why we’re doing this</p>
+    <h2>Our work for Him should flow from our time with Him.</h2>
+    <p class="lead">At IFI, we spend our lives helping international students encounter Jesus, grow in their faith, and live out the gospel. But our ministry must flow from our own ongoing relationship with Him. For 30 consecutive days, we’ll build daily habits centered on Jesus, and grow in how we live, think, and serve, together as an IFI community.</p>
+    <div class="cards">
+      <div class="card" style="--c:var(--be)">
+        <h3>Be with Jesus</h3><p class="req">15 MINUTES</p>
+        <p>Prioritize time in relationship with Him. Spend at least 15 minutes through prayer, Scripture, journaling, silence, solitude, worship, or other spiritual disciplines.</p>
+      </div>
+      <div class="card" style="--c:var(--think)">
+        <h3>Think with Jesus</h3><p class="req">10 PAGES</p>
+        <p>Let Him shape your mind. Read at least 10 pages of nonfiction that grows your understanding of God, Scripture, the Christian life, or the world. You can also reflect on Scripture, memorize it, and remember His faithfulness.</p>
+      </div>
+      <div class="card" style="--c:var(--do)">
+        <h3>Do with Jesus</h3><p class="req">BLESS 1 PERSON</p>
+        <p>Join Him in loving others. Encourage a coworker, pray with someone, serve selflessly, have an intentional conversation about Jesus, practice hospitality, or share what He’s been teaching you.</p>
+      </div>
+    </div>
+    <p class="note">Our goal is formation, not performance. This isn’t about earning God’s favor, competing with colleagues, or checking boxes.</p>
+  </div>
+</section>
+
+<section id="today" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Today</p>
+    <h2>Keep the three.</h2>
+    <div id="setup" class="setup">
+      <strong>When does your 30 days begin?</strong>
+      <input type="date" id="startInput" aria-label="Start date">
+      <button class="btn" id="startBtn">Start My 30 Days</button>
+    </div>
+    <div id="dash" class="grid2" style="display:none">
+      <div>
+        <div class="daybig" id="dayBig"></div>
+        <div class="daylbl" id="dayLbl"></div>
+        <div id="rows"></div>
+        <div class="refl">
+          <label for="refl">What is Jesus teaching me?</label>
+          <textarea id="refl" placeholder="A sentence or two to share with the team…"></textarea>
+          <button class="btn ghost" id="copyBtn">Copy to share</button>
+          <span id="copied" class="daylbl" style="margin-left:.6rem"></span>
+        </div>
+      </div>
+      <div>
+        <div class="stats" id="stats"></div>
+        <div class="track" id="track"></div>
+        <p class="legend">Filled = all three · outlined = in progress · dashed ring = milestone (days 7, 15, 30)</p>
+        <p class="grace">Missed a day? Nothing resets. Pick it back up today. The aim is a way of life that outlasts the 30 days.</p>
+        <button class="btn ghost" id="changeStart" style="margin-top:1rem">Change start date</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Be. Think. Do. — formation, not performance.</footer>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="ovT">
+  <div class="ovc">
+    <div class="glow"></div>
+    <p class="eyebrow" id="ovD"></p>
+    <h3 id="ovT"></h3>
+    <p id="ovB"></p>
+    <button class="btn" id="ovX">Keep Going</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var TOTAL=30, MS={
+    7:["One week in.","Seven days of making room for Jesus. Notice what is already beginning to change in how you pay attention."],
+    15:["Halfway.","Fifteen days. Take a moment to thank Him, and tell a teammate what He’s been teaching you."],
+    30:["Thirty days.","You’ve built a rhythm with Jesus. The challenge ends here, but the habits don’t have to."]
+  };
+  var KEY="bethinkdo:v1", S={start:null,days:{},cel:[]}, sel=1;
+  var R=[["be","Be with Jesus","15 min","What did you do? (prayer, Scripture, silence…)","var(--be)"],
+         ["think","Think with Jesus","10 pages","What are you reading?","var(--think)"],
+         ["do","Do with Jesus","bless 1","Who did you bless, and how?","var(--do)"]];
+  function $(i){return document.getElementById(i);}
+  function load(){try{var v=localStorage.getItem(KEY);if(v)S=Object.assign(S,JSON.parse(v));}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+  function ymd(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+  function today(){var t=new Date();t.setHours(0,0,0,0);return t;}
+  function curDay(){var s=new Date(S.start+"T00:00:00");return Math.min(Math.max(Math.round((today()-s)/864e5)+1,1),TOTAL);}
+  function dateOf(n){var d=new Date(S.start+"T00:00:00");d.setDate(d.getDate()+n-1);return d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});}
+  function day(n){return S.days[n]||(S.days[n]={be:0,think:0,do:0,bn:"",tn:"",dn:"",refl:""});}
+  function full(n){var d=S.days[n];return !!d&&d.be&&d.think&&d.do;}
+  function part(n){var d=S.days[n];return !!d&&(d.be||d.think||d.do);}
+  function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");}
+
+  function render(){
+    var cur=curDay(), locked=sel>cur, d=day(sel), done=0;
+    for(var i=1;i<=TOTAL;i++) if(full(i)) done++;
+    $("dayBig").textContent="Day "+String(sel).padStart(2,"0");
+    $("dayLbl").textContent="of "+TOTAL+" · "+dateOf(sel)+(locked?" · not yet":"");
+    $("rows").innerHTML=R.map(function(r){
+      var k=r[0], nk={be:"bn",think:"tn",do:"dn"}[k];
+      return '<div class="row" style="--c:'+r[4]+'"><button class="cb" data-k="'+k+'" role="checkbox" aria-checked="'+(d[k]?"true":"false")+'" aria-label="'+r[1]+'"'+(locked?" disabled":"")+'></button>'+
+        '<div class="body"><span class="t">'+r[1]+'</span><span class="r">'+r[2]+'</span>'+
+        '<input type="text" data-n="'+nk+'" placeholder="'+r[3]+'" value="'+esc(d[nk])+'"'+(locked?" disabled":"")+'></div></div>';
+    }).join("");
+    $("refl").value=d.refl; $("refl").disabled=locked;
+    $("stats").innerHTML="<b>"+done+"</b> of "+TOTAL+" days with all three rhythms";
+    var h="";
+    for(var n=1;n<=TOTAL;n++){
+      var c="d"+(full(n)?" done":part(n)?" part":"")+(n===cur?" today":"")+(MS[n]?" ms":"")+(n===sel?" sel":"");
+      h+='<button class="'+c+'" data-day="'+n+'"'+(n>cur?" disabled":"")+' aria-label="Day '+n+(full(n)?", complete":"")+(MS[n]?", milestone":"")+'">'+n+'</button>';
+    }
+    $("track").innerHTML=h;
+  }
+
+  function celebrate(n){
+    S.cel.push(n); save();
+    $("ovD").textContent="Day "+n; $("ovT").textContent=MS[n][0]; $("ovB").textContent=MS[n][1];
+    $("ov").classList.add("show"); $("ovX").focus();
+  }
+  $("ovX").onclick=function(){$("ov").classList.remove("show");};
+
+  $("rows").addEventListener("click",function(e){
+    var b=e.target.closest(".cb"); if(!b||b.disabled) return;
+    var d=day(sel), was=full(sel); d[b.dataset.k]=d[b.dataset.k]?0:1; save(); render();
+    if(!was&&full(sel)&&MS[sel]&&S.cel.indexOf(sel)<0) celebrate(sel);
+  });
+  $("rows").addEventListener("input",function(e){
+    if(e.target.dataset.n){day(sel)[e.target.dataset.n]=e.target.value;save();}
+  });
+  $("refl").addEventListener("input",function(e){day(sel).refl=e.target.value;save();});
+  $("track").addEventListener("click",function(e){
+    var b=e.target.closest(".d"); if(!b||b.disabled) return; sel=+b.dataset.day; render();
+  });
+  $("copyBtn").onclick=function(){
+    var t=$("refl"), txt=t.value.trim(); if(!txt) return;
+    var msg="Be. Think. Do. — Day "+sel+": "+txt;
+    function ok(){$("copied").textContent="Copied.";setTimeout(function(){$("copied").textContent="";},2000);}
+    try{navigator.clipboard.writeText(msg).then(ok,function(){t.select();document.execCommand("copy");ok();});}
+    catch(err){try{t.select();document.execCommand("copy");ok();}catch(e2){}}
+  };
+  $("startBtn").onclick=function(){
+    var v=$("startInput").value; if(!v) return;
+    S.start=v; save(); show();
+  };
+  $("changeStart").onclick=function(){S.start=null;save();show();};
+
+  function show(){
+    var has=!!S.start;
+    $("setup").style.display=has?"none":"block";
+    $("dash").style.display=has?"grid":"none";
+    if(has){sel=curDay();render();}
+    else $("startInput").value=ymd(today());
+  }
+  load(); show();
+})();
+</script>
+</body>
+</html>
